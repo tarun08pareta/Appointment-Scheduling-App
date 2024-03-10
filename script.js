@@ -37,8 +37,7 @@ document.getElementById("Add").addEventListener("click", function () {
   // Create a new div to display appointment information
   var appointmentDiv = document.createElement("div");
   appointmentDiv.className = "appointment";
-//   appointmentDiv.innerHTML =
-//     "<strong>" + title + "</strong><p>Date: " + formattedDate + "</p>";
+
 appointmentDiv.innerHTML = '<i class="fa fa-star"></i><strong>' + title + "</strong><p>Date: " + formattedDate + "</p>";
 
   // Append the new appointment div to the appointment box
@@ -61,21 +60,25 @@ appointmentDiv.innerHTML = '<i class="fa fa-star"></i><strong>' + title + "</str
 
 
 // when we are click starred button 
+var showAllBox=false;
+
 document.getElementById("star").addEventListener("click", function () {
+  console.log("cliked on stared button")
     var appointmentDivs = document.querySelectorAll('.appointment');
+
     appointmentDivs.forEach(function (div) {
         var starIcon = div.querySelector('.fa-star');
-        if (starIcon.classList.contains('starred')) {
+        if(showAllBox){
+          div.style.display = 'block';
+        }
+        else if (starIcon.classList.contains('starred')) {
             div.style.display = 'block';
-        } else {
+        } else{
             div.style.display = 'none';
         }
     });
+    showAllBox=!showAllBox;
 });
-
-
-
-
 
 
 

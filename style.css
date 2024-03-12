@@ -16,6 +16,7 @@ body{
     justify-content: center;
     align-items: center;
     /* top: 15px; */
+    margin-top: 2%;
 }
 .upper{
     background-color: white;
@@ -52,6 +53,10 @@ body{
     /* justify-content: space-between; */
     /* justify-content: space-between; */
     /* gap: 10px; */
+    margin: 2% 0% 0% 4%;
+}
+.box1 h1{
+    margin: 5% 0% 3% 10%;
 }
 .infomation{
     width: 50%;
@@ -63,7 +68,7 @@ body{
 }
 
 input{
-    height: 40px;
+    height: 70%;
     width: 250px;
     
 }
@@ -77,14 +82,25 @@ label{
   border-radius: 7px;
   background-color: rgb(166, 9, 222);
   color: wheat;
+  margin-top: 15%;
+  margin-left: 15%;
+  padding: 3%;
+  padding-bottom: 12%;
+}
+#Add:hover{
+    background-color: rgb(15, 67, 211);  
+  color: wheat;
 }
 
+.box2 img{
+    width: 90%;
+}
 
 .line{
     margin-right: 15px;
     background-color: black;
     height: 1.5px;
-    width: 67vw;
+    /* width: 67vw; */
 }
 
 .container2{

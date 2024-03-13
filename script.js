@@ -35,6 +35,7 @@ document.getElementById("Add").addEventListener("click", function () {
   // Create a new div to display appointment information
   var appointmentDiv = document.createElement("div");
   appointmentDiv.className = "appointment";
+  appointmentDiv.setAttribute("data-date", date); // Set a data attribute to store the appointment date
 
   appointmentDiv.innerHTML =
     '<i class="fa fa-star"></i><strong>' +
@@ -43,10 +44,32 @@ document.getElementById("Add").addEventListener("click", function () {
     formattedDate +
     "</p>";
 
-  // Append the new appointment div to the appointment box
-  document.getElementById("appointmentBox").appendChild(appointmentDiv);
 
-  // Save the appointment to local storage
+// creative div sort by date (start code )
+
+  var appointmentBox = document.getElementById("appointmentBox");
+  
+      appointmentBox.appendChild(appointmentDiv);
+  
+
+  // Sort all appointment divs by date
+  var sortedAppointments = Array.from(appointmentBox.children).sort(function(a, b) {
+      var dateA = new Date(a.getAttribute("data-date"));
+      var dateB = new Date(b.getAttribute("data-date"));
+      return dateA - dateB;
+  });
+
+  // Re-append sorted appointment divs to maintain order
+  sortedAppointments.forEach(function(appointment) {
+      appointmentBox.appendChild(appointment);
+  });
+
+
+// creative div sort by date (end  code )
+
+
+
+  // Save the appointment to local storage  (start code)
   var appointments = JSON.parse(localStorage.getItem("appointments")) || [];
   appointments.push({
     title: title,
@@ -54,6 +77,9 @@ document.getElementById("Add").addEventListener("click", function () {
     formattedDate: formattedDate,
   });
   localStorage.setItem("appointments", JSON.stringify(appointments));
+
+// Save the appointment to local storage  (end code)
+
 
   // star icon
   var starIcon = appointmentDiv.querySelector(".fa-star");
@@ -66,27 +92,38 @@ document.getElementById("Add").addEventListener("click", function () {
   document.getElementById("date").value = "";
 });
 
-// Load appointments from local storage when the page loads
+// Load appointments from local storage when the page loads  (start code )
+
+
 // window.addEventListener("DOMContentLoaded", function () {
 //   var appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+//   var appointmentBox = document.getElementById("appointmentBox");
+
 //   appointments.forEach(function (appointment) {
 //     var appointmentDiv = document.createElement("div");
 //     appointmentDiv.className = "appointment";
+//     appointmentDiv.setAttribute("data-date", appointment.date);
+
 //     appointmentDiv.innerHTML =
 //       '<i class="fa fa-star"></i><strong>' +
 //       appointment.title +
 //       "</strong><p>Date: " +
 //       appointment.formattedDate +
 //       "</p>";
-//     document.getElementById("appointmentBox").appendChild(appointmentDiv);
 
 //     // star icon
 //     var starIcon = appointmentDiv.querySelector(".fa-star");
 //     starIcon.addEventListener("click", function () {
 //       starIcon.classList.toggle("starred");
 //     });
+
+//     appointmentBox.appendChild(appointmentDiv);
 //   });
 // });
+
+
+
+// Load appointments from local storage when the page loads  (end code )
 
 
 
@@ -109,4 +146,3 @@ document.getElementById("star").addEventListener("click", function () {
   });
   showAllBox = !showAllBox;
 });
-
